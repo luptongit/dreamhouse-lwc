@@ -9,7 +9,7 @@
             <assignToReference>SelectedCase.OwnerId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>005S000000KHwrT</stringValue>
+                <elementReference>Get_To_User.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -44,10 +44,38 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Get_from_User</name>
+        <label>Get from User</label>
+        <locationX>52</locationX>
+        <locationY>172</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_To_User</targetReference>
+        </connector>
+        <filters>
+            <field>FirstName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>User</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>LastName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>User</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Records_From_One_User</name>
         <label>Get Records From One User</label>
-        <locationX>174</locationX>
-        <locationY>59</locationY>
+        <locationX>187</locationX>
+        <locationY>319</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>For_Each_Case</targetReference>
@@ -56,7 +84,7 @@
             <field>OwnerId</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>005S000000KQsyIIAT</stringValue>
+                <elementReference>Get_from_User.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -65,6 +93,27 @@
         <queriedFields>OwnerId</queriedFields>
         <sortField>CaseNumber</sortField>
         <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_To_User</name>
+        <label>Get To User</label>
+        <locationX>61</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Records_From_One_User</targetReference>
+        </connector>
+        <filters>
+            <field>FirstName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Security</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
@@ -81,7 +130,7 @@
         <locationX>50</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Get_Records_From_One_User</targetReference>
+            <targetReference>Get_from_User</targetReference>
         </connector>
     </start>
     <status>Draft</status>

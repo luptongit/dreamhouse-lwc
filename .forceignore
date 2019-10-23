@@ -19,3 +19,6 @@ package.xml
 
 Workflow
 
+force-app/main/default/profilePasswordPolicies/Design_Team_profilePasswordPolicy1571786798844.profilePasswordPolicy-meta.xml
+force-app/main/default/profileSessionSettings/Design_Team_profileSessionSetting1571786798970.profileSessionSetting-meta.xml
+
