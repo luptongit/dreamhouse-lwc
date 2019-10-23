@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Update_Owner_Id</name>
+        <label>Update Owner Id</label>
+        <locationX>584</locationX>
+        <locationY>120</locationY>
+        <assignmentItems>
+            <assignToReference>SelectedCase.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>005S000000KHwrT</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Owner_Record_Save</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>Reassign Cases {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Reassign Cases</label>
+    <loops>
+        <name>For_Each_Case</name>
+        <label>For Each Case</label>
+        <locationX>371</locationX>
+        <locationY>61</locationY>
+        <assignNextValueToReference>SelectedCase</assignNextValueToReference>
+        <collectionReference>Get_Records_From_One_User</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Update_Owner_Id</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Records_From_One_User</name>
+        <label>Get Records From One User</label>
+        <locationX>174</locationX>
+        <locationY>59</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>For_Each_Case</targetReference>
+        </connector>
+        <filters>
+            <field>OwnerId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>005S000000KQsyIIAT</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Case</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
+        <sortField>CaseNumber</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Owner_Record_Save</name>
+        <label>Update Owner Record (Save)</label>
+        <locationX>587</locationX>
+        <locationY>247</locationY>
+        <connector>
+            <targetReference>For_Each_Case</targetReference>
+        </connector>
+        <inputReference>SelectedCase</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Records_From_One_User</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>SelectedCase</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

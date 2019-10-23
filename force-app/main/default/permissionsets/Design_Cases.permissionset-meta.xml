@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Access to Design Case Record Types</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Link_to_Designer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Design Cases</label>
+    <license>SalesConsoleUser</license>
+</PermissionSet>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An event triggered by the designer tool to let Salesforce know that the design was approved</description>
+    <eventType>HighVolume</eventType>
+    <label>Design Approval</label>
+    <pluralLabel>Design Approvals</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>
